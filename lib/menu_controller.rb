@@ -3,9 +3,11 @@
 require 'colorize'
 
 require_relative 'assets/ascii_logo'
+require_relative 'game_controller'
 
 module MenuController
   include AsciiLogo
+  include GameController
 
   attr_accessor :start_menu_user_input
 
@@ -35,7 +37,7 @@ module MenuController
   def self.process_user_start(user_input)
     case user_input
     when 'start'
-      puts 'start'
+      GameController.start_new_game
     when 'help'
       puts 'help'
     when 'credits'
