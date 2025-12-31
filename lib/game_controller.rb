@@ -155,11 +155,21 @@ module GameController
           v[:currentPosition] == initial_piece_location
         end[1][:currentPosition] = desired_piece_location
 
+        # Remember to implement piece removal logic here
+        # if desired_piece_location has another piece.
+        # The piece needs to be opposite color in order
+        # to be valid for the taking.
+
         'Move processed'
       else
         Pieces.black.find do |k, v|
           v[:currentPosition] == initial_piece_location
         end[1][:currentPosition] = desired_piece_location
+
+        # Remember to implement piece removal logic here
+        # if desired_piece_location has another piece.
+        # The piece needs to be opposite color in order
+        # to be valid for the taking.
 
         'Move processed'
       end
