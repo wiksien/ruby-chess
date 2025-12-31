@@ -9,7 +9,11 @@ module GameUtils
 
   def self.display_game(all_pieces)
     print "\n"
+    print '   '
+    8.times { |i| print " #{('A'..'H').to_a[i]} " }
+    print "\n"
     (0..7).each do |y_coordinate|
+      print ' ', 8 - y_coordinate, ' '
       (0..7).each do |x_coordinate|
         coordinate_state = GameUtils.check_square([x_coordinate, y_coordinate],
                                                   all_pieces)
