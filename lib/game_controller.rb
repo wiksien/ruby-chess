@@ -170,6 +170,8 @@ module GameController
         # if desired_piece_location has another piece.
         # The piece needs to be opposite color in order
         # to be valid for the taking.
+        #
+        # Black and White should be different
 
         'Move processed'
       end
