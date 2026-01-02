@@ -31,33 +31,28 @@ module GameController
 
   def self.start_new_game
     Pieces.start_new_game
-    GameUtils.display_game(Pieces.all_pieces)
-
     @turn = 0
     @active_player = 'White'
 
-    player_move = GameController.handle_utility_commands
+    loop do
+      system 'clear'
+      GameUtils.display_game(Pieces.all_pieces)
 
-    return if player_move == 'quit'
+      player_input = GameController.handle_utility_commands
 
-    move_response = GameController.process_player_move(player_move)
+      break if player_input == 'quit'
 
-    GameController.handle_move_response(move_response)
-  end
+      move_response = GameController.process_player_move(player_input)
 
-  def self.start_new_turn
-    GameUtils.display_game(Pieces.all_pieces)
-
-    @turn += 1
-    @active_player = @active_player == 'White' ? 'Black' : 'White'
-
-    player_move = GameController.handle_utility_commands
-
-    return if player_move == 'quit'
-
-    move_response = GameController.process_player_move(player_move)
-
-    GameController.handle_move_response(move_response)
+      if move_response == 'Move processed'
+        @turn += 1
+        @active_player = @active_player == 'White' ? 'Black' : 'White'
+      else
+        puts "\n#{move_response}"
+        puts 'Press Enter to try again...'
+        gets
+      end
+    end
   end
 
   def self.handle_utility_commands
